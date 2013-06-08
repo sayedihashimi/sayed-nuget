@@ -19,6 +19,8 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">.\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -38,7 +40,29 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Elmah">
+      <HintPath>packages\elmah.corelibrary.1.2.2\lib\Elmah.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject">
+      <HintPath>packages\Ninject.3.0.1.10\lib\net45-full\Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="NuGet.Core, Version=2.5.40416.9020, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>packages\Nuget.Core.2.5.0\lib\net40-Client\NuGet.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="NuGet.Server, Version=2.5.40416.9020, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="RouteMagic">
+      <HintPath>packages\RouteMagic.1.2\lib\net40\RouteMagic.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.Services" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Activation" />
+    <Reference Include="System.ServiceModel.Web" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -55,14 +79,84 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
+    <Reference Include="WebActivator">
+      <HintPath>packages\WebActivator.1.5.3\lib\net40\WebActivator.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Readme\Elmah.txt" />
+    <Content Include="DataServices\Packages.svc" />
+    <Content Include="Default.aspx" />
+    <Content Include="favicon.ico" />
+    <Content Include="Packages\elmah.1.2.2\content\App_Readme\Elmah.txt" />
+    <Content Include="Packages\elmah.1.2.2\Readme.txt" />
+    <Content Include="Packages\elmah.corelibrary.1.2.2\lib\Elmah.dll" />
+    <Content Include="Packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll" />
+    <Content Include="Packages\Ninject.3.0.1.10\lib\net35\Ninject.dll" />
+    <Content Include="Packages\Ninject.3.0.1.10\lib\net35\Ninject.pdb" />
+    <Content Include="Packages\Ninject.3.0.1.10\lib\net35\Ninject.xml" />
+    <Content Include="Packages\Ninject.3.0.1.10\lib\net40\Ninject.dll" />
+    <Content Include="Packages\Ninject.3.0.1.10\lib\net40\Ninject.pdb" />
+    <Content Include="Packages\Ninject.3.0.1.10\lib\net40\Ninject.xml" />
+    <Content Include="Packages\Ninject.3.0.1.10\lib\net45-full\Ninject.dll" />
+    <Content Include="Packages\Ninject.3.0.1.10\lib\net45-full\Ninject.pdb" />
+    <Content Include="Packages\Ninject.3.0.1.10\lib\net45-full\Ninject.xml" />
+    <Content Include="Packages\Ninject.3.0.1.10\lib\sl2\Ninject.dll" />
+    <Content Include="Packages\Ninject.3.0.1.10\lib\sl2\Ninject.pdb" />
+    <Content Include="Packages\Ninject.3.0.1.10\lib\sl2\Ninject.xml" />
+    <Content Include="Packages\Ninject.3.0.1.10\lib\sl3-wp\Ninject.dll" />
+    <Content Include="Packages\Ninject.3.0.1.10\lib\sl3-wp\Ninject.pdb" />
+    <Content Include="Packages\Ninject.3.0.1.10\lib\sl3-wp\Ninject.xml" />
+    <Content Include="Packages\Ninject.3.0.1.10\lib\sl3\Ninject.dll" />
+    <Content Include="Packages\Ninject.3.0.1.10\lib\sl3\Ninject.pdb" />
+    <Content Include="Packages\Ninject.3.0.1.10\lib\sl3\Ninject.xml" />
+    <Content Include="Packages\Ninject.3.0.1.10\lib\sl4-windowsphone71\Ninject.dll" />
+    <Content Include="Packages\Ninject.3.0.1.10\lib\sl4-windowsphone71\Ninject.pdb" />
+    <Content Include="Packages\Ninject.3.0.1.10\lib\sl4-windowsphone71\Ninject.xml" />
+    <Content Include="Packages\Ninject.3.0.1.10\lib\sl4\Ninject.dll" />
+    <Content Include="Packages\Ninject.3.0.1.10\lib\sl4\Ninject.pdb" />
+    <Content Include="Packages\Ninject.3.0.1.10\lib\sl4\Ninject.xml" />
+    <Content Include="Packages\Ninject.3.0.1.10\lib\sl5\Ninject.dll" />
+    <Content Include="Packages\Ninject.3.0.1.10\lib\sl5\Ninject.pdb" />
+    <Content Include="Packages\Ninject.3.0.1.10\lib\sl5\Ninject.xml" />
+    <Content Include="Packages\Nuget.Core.2.5.0\lib\net40-Client\NuGet.Core.dll" />
+    <Content Include="Packages\NuGet.Server.2.5.0.1\content\DataServices\Packages.svc" />
+    <Content Include="Packages\NuGet.Server.2.5.0.1\content\Default.aspx" />
+    <Content Include="Packages\NuGet.Server.2.5.0.1\content\favicon.ico" />
+    <Content Include="Packages\NuGet.Server.2.5.0.1\content\Packages\Readme.txt" />
+    <Content Include="Packages\NuGet.Server.2.5.0.1\lib\net40\NuGet.Server.dll" />
+    <Content Include="Packages\Readme.txt" />
+    <Content Include="Packages\RouteMagic.1.2\lib\net40\RouteMagic.dll" />
+    <Content Include="Packages\WebActivator.1.5.3\lib\net40\WebActivator.dll" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataServices\Routes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="packages.config" />
+    <Content Include="Packages\elmah.1.2.2\content\web.config.transform" />
+    <Content Include="Packages\elmah.1.2.2\elmah.1.2.2.nupkg" />
+    <Content Include="Packages\elmah.1.2.2\elmah.1.2.2.nuspec" />
+    <Content Include="Packages\elmah.corelibrary.1.2.2\elmah.corelibrary.1.2.2.nupkg" />
+    <Content Include="Packages\elmah.corelibrary.1.2.2\elmah.corelibrary.1.2.2.nuspec" />
+    <Content Include="Packages\Microsoft.Web.Infrastructure.1.0.0.0\Microsoft.Web.Infrastructure.1.0.0.0.nupkg" />
+    <Content Include="Packages\Microsoft.Web.Infrastructure.1.0.0.0\Microsoft.Web.Infrastructure.1.0.0.0.nuspec" />
+    <Content Include="Packages\Ninject.3.0.1.10\Ninject.3.0.1.10.nupkg" />
+    <Content Include="Packages\Ninject.3.0.1.10\Ninject.3.0.1.10.nuspec" />
+    <Content Include="Packages\Nuget.Core.2.5.0\Nuget.Core.2.5.0.nupkg" />
+    <Content Include="Packages\Nuget.Core.2.5.0\Nuget.Core.2.5.0.nuspec" />
+    <Content Include="Packages\NuGet.Server.2.5.0.1\content\DataServices\Routes.cs.pp" />
+    <Content Include="Packages\NuGet.Server.2.5.0.1\content\Web.config.transform" />
+    <Content Include="Packages\NuGet.Server.2.5.0.1\NuGet.Server.2.5.0.1.nupkg" />
+    <Content Include="Packages\NuGet.Server.2.5.0.1\NuGet.Server.2.5.0.1.nuspec" />
+    <Content Include="Packages\repositories.config" />
+    <Content Include="Packages\RouteMagic.1.2\RouteMagic.1.2.nupkg" />
+    <Content Include="Packages\RouteMagic.1.2\RouteMagic.1.2.nuspec" />
+    <Content Include="Packages\WebActivator.1.5.3\WebActivator.1.5.3.nupkg" />
+    <Content Include="Packages\WebActivator.1.5.3\WebActivator.1.5.3.nuspec" />
+    <Content Include="MyPackages\VsixCompress.1.0.0.3.nupkg" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -70,6 +164,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
@@ -95,6 +190,7 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
+  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
