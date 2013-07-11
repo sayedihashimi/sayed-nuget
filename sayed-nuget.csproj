@@ -99,6 +99,10 @@
   <ItemGroup>
     <Content Include="packages.config" />
     <Content Include="MyPackages\VsixCompress.1.0.0.3.nupkg" />
+    <Content Include="MyPackages\PackageWeb.1.1.9-beta.nupkg" />
+    <Content Include="MyPackages\PackageWeb.1.1.11-beta2.nupkg" />
+    <Content Include="MyPackages\SlowCheetah.Xdt.1.1.1.nupkg" />
+    <Content Include="MyPackages\Microsoft.Web.Xdt.1.0.0-alpha.nupkg" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
